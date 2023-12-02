@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("", include("pdf_generator.urls")),
+    path("api/pdf/", include("pdf_generator.urls")),
     path("admin/", admin.site.urls),
 ]
