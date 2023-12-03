@@ -10,6 +10,8 @@ from rest_framework.response import Response
 from pdf_generator.helpers import generate_pdf, get_all_pdfs
 
 REQUIRED_FIELDS = ["name", "address", "email", "phone"]
+if not os.path.exists(settings.MEDIA_ROOT):
+    os.makedirs(settings.MEDIA_ROOT)
 
 
 @api_view(["GET", "POST"])
@@ -30,7 +32,7 @@ def index(request: Request):
         )
 
     pdf_path = generate_pdf(data)
-    return Response({"pdf": pdf_path})
+    return Response({"pdf": pdf_path}, 201)
 
 
 @api_view(["GET"])

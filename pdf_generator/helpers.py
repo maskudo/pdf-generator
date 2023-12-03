@@ -29,4 +29,10 @@ def delete_pdf(path: str):
 
 
 def get_all_pdfs() -> List[str]:
-    return [file for file in os.listdir(settings.MEDIA_ROOT) if file.endswith(".pdf")]
+    try:
+        files = [
+            file for file in os.listdir(settings.MEDIA_ROOT) if file.endswith(".pdf")
+        ]
+        return files
+    except FileNotFoundError:
+        return []
